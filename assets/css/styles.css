@@ -2,7 +2,7 @@
 /* #####################################################
 # Variables
 ##################################################### */
-:root { --background-color: #ffffff; /* white */ --link-and-active-elements-color: #9FBA36; /* light blue */ --navbar-and-footer-color: #666666; /* dark gray */ --section-color: #ffffff; /* white */ --table-alternating-color: #283087; /* light gray */ }
+:root { --background-color: #ffffff; /* white */ --link-and-active-elements-color: #9FBA36; /* light blue */ --navbar-and-footer-color: #666666; /* dark gray */ --section-color: #ffffff; /* white */ --table-alternating-color: #f2f2f2; /* light gray */ }
 
 
 /* #####################################################
@@ -124,7 +124,7 @@ td.teachingtable { vertical-align: top; text-align: left; padding: 5px; }
 
 th.teachingtable { vertical-align: top; text-align: left; padding: 5px; }
 
-tr.teachingtable:nth-child(even) { background-color: #f2f2f2; } /*var(--table-alternating-color)*/
+tr.teachingtable:nth-child(even) { background-color: var(--table-alternating-color); } /*var(--table-alternating-color)*/
 
 /* #####################################################
 # Footer
