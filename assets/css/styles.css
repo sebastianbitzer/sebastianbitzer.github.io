@@ -116,8 +116,18 @@ section {
 }
 
 /* #####################################################
-# Teaching Tables
+# Tables
 ##################################################### */
+
+/* publications */
+td.publist { vertical-align: top; text-align: left; padding: 5px; }
+
+table.publist { width: 100%; border-spacing: 5px; padding: 10px; border-collapse: collapse; }
+
+tr.publist:nth-child(even) { background-color: var(--table-alternating-color); }
+
+
+/* teaching */
 table.teachingtable { width: 100%; padding: 10px; border-collapse: collapse; }
 
 td.teachingtable { vertical-align: top; text-align: left; padding: 5px; }
