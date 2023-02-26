@@ -8,11 +8,24 @@
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <style>
         body{font-family: 'Poppins';/*font-size: 22px;*/}
-        img {border-radius: 10px;}
+        img {
+            border-radius: 10px;
+            border: 5px solid var(--link-and-active-elements-color);
+        }
     </style>
 </head>
 
 <body>
+    <script>
+        function myFunction() {
+          var x = document.getElementById("myTopnav");
+          if (x.className === "topnav") {
+            x.className += " responsive";
+          } else {
+            x.className = "topnav";
+          }
+        }
+        </script>
 
 <header>
     <h1>Sebastian Bitzer</h1> 
@@ -35,7 +48,7 @@
 
 <section>
     <h2>
-        <img src="images/sebastianbitzer_home.jpg" alt="Home Photo" style="max-width:50%;width:200px;height:200px;margin-left:15px;float: right;">
+        <img src="images/sebastianbitzer_home.jpg" alt="Sebastians Home" style="max-width:50%;width:159px;height:200px;margin-left:15px;float: right;">
         Biography
     </h2>
     <p>
@@ -44,7 +57,7 @@
     </p>
     <p>
     I received my B.Sc and M.Sc degree in Electrical Engineering from <b>Ulm University</b>  in 2018 and 2021, respectively.
-    During my studies, I started to collaborate with <a href="https://www.uni-ulm.de/nt/staff/professors/martin-bossert/">Prof. Martin Bossert</a> in order to develop efficient hard- and soft-decision decoding algorithms for for algebraic codes.
+    <!--During my studies, I started to collaborate with <a href="https://www.uni-ulm.de/nt/staff/professors/martin-bossert/">Prof. Martin Bossert</a> in order to develop efficient hard- and soft-decision decoding algorithms for for algebraic codes.-->
     </p>
 </section>
 <section>

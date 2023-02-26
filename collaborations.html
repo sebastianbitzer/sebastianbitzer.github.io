@@ -4,23 +4,45 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <style>
+        body{font-family: 'Poppins';/*font-size: 22px;*/}
+        img {
+            border-radius: 10px;
+            border: 5px solid var(--link-and-active-elements-color);
+        }
+    </style>
 </head>
 
 <body>
+    <script>
+        function myFunction() {
+          var x = document.getElementById("myTopnav");
+          if (x.className === "topnav") {
+            x.className += " responsive";
+          } else {
+            x.className = "topnav";
+          }
+        }
+        </script>
 
 <header>
-    <h1>Greetings!</h1> 
-    <br> <!--br is line break-->
-    <h2>Welcome to my page!</h2>
+    <h1>Sebastian Bitzer</h1> 
+    <br> 
+    <h2>Doctoral Researcher <br> Technical University of Munich</h2>
 </header>
 
 <nav>
     <div class="topnav" id="myTopnav">
         <a href="index.html" class="topnav">Home</a>
-        <a href="research.html" class="topnav">Research</a>
-        <a href="collaborations.html" class="active topnav">Co-Authors</a>
+        <a href="research.html" class="active topnav">Research</a>
+        <a href="collaborations.html" class="topnav">Co-Authors</a>
         <a href="teaching.html" class="topnav">Teaching</a>
-        <a href="research.html" class="topnav">More</a>
+        <a href="more.html" class="topnav">More</a>
+        <a href="javascript:void(0);" class="icon topnav" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+          </a>
     </div>
 </nav>
 
