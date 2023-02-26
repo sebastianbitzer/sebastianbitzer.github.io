@@ -6,6 +6,11 @@
 
 
 /* #####################################################
+# Body
+##################################################### */
+body { font-family: 'Open Sans', sans-serif; background-color: var(--background-color); }
+
+/* #####################################################
 # Links
 ##################################################### */
 a { color: var(--link-and-active-elements-color); }
@@ -28,11 +33,14 @@ header { padding: 10px; max-width: 1000px; margin: 10px auto; }
 ##################################################### */
 nav { 
     overflow: hidden; 
+    max-width: 1100px;
+    margin-left: auto; 
+    margin-right: auto; 
     background-color: var(--navbar-and-footer-color); 
     position: -webkit-sticky; /* Safari */ position: sticky; 
     top: 0; 
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
 
@@ -44,6 +52,7 @@ a.topnav {
     padding: 10px 10px; 
     text-decoration: none; 
     border-radius: 10px;
+    border: 2px solid var(--navbar-and-footer-color);
 }
 a.active { 
     background-color: var(--link-and-active-elements-color); 
@@ -97,7 +106,14 @@ a.topnav:hover {
 /* #####################################################
 # Structuring
 ##################################################### */
-section { padding: 10px; max-width: 1000px; background-color: var(--section-color); box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin: 15px auto; border-radius: 10px;}
+section { 
+    padding: 10px; 
+    max-width: 1000px; 
+    background-color: var(--section-color); 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+    margin: 15px auto; 
+    border-radius: 10px;
+}
 
 /* #####################################################
 # Teaching Tables
@@ -108,5 +124,26 @@ td.teachingtable { vertical-align: top; text-align: left; padding: 5px; }
 
 th.teachingtable { vertical-align: top; text-align: left; padding: 5px; }
 
-tr.teachingtable:nth-child(even) { background-color: black ; } /*var(--table-alternating-color)*/
+tr.teachingtable:nth-child(even) { background-color: #f2f2f2; } /*var(--table-alternating-color)*/
+
+/* #####################################################
+# Footer
+##################################################### */
+footer { 
+    overflow: hidden; 
+    background-color: var(--navbar-and-footer-color); 
+    top: 0; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+    margin-top: 15px; 
+}
+
+.footercontent { 
+    color: white; 
+    text-align: left; 
+}
+
+div.footercontainer { 
+    padding: 10px; 
+    max-width: 1000px; 
+    margin: 10px auto; }
 
