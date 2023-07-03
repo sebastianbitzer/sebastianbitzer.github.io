@@ -183,7 +183,7 @@ div.footercontainer {
 
 .bioimage {
   border-radius: 10px;
-  border: 5px solid var(--link-and-active-elements-color);
+  border: 5px solid var(--navbar-and-footer-color);
 }
 
 
