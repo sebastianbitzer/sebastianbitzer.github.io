@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg2"
+   width="162.52"
+   height="162.52"
+   viewBox="0 0 162.52 162.52"
+   sodipodi:docname="cross_logo.svg"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs6" />
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="25.276888"
+     inkscape:cx="27.594378"
+     inkscape:cy="63.417618"
+     inkscape:window-width="2560"
+     inkscape:window-height="1377"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g10">
+    <inkscape:page
+       x="0"
+       y="0"
+       id="page8"
+       width="162.52"
+       height="162.52" />
+  </sodipodi:namedview>
+  <g
+     id="g10"
+     inkscape:groupmode="layer"
+     inkscape:label="Page 1"
+     transform="matrix(1.3333333,0,0,-1.3333333,0,162.52)">
+    <g
+       id="g12"
+       transform="translate(60.945,60.945)">
+      <g
+         id="g14">
+        <g
+           id="g16">
+          <g
+             id="g18">
+            <path
+               d="m 56.69362,0 c 0,31.31142 -25.3822,56.69362 -56.69362,56.69362 -31.31142,0 -56.69362,-25.3822 -56.69362,-56.69362 0,-31.31142 25.3822,-56.69362 56.69362,-56.69362 31.31142,0 56.69362,25.3822 56.69362,56.69362 z"
+               style="fill:none;stroke:#005293;stroke-width:8.50412;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               id="path20" />
+          </g>
+          <g
+             id="g22">
+            <path
+               d="M 21.2601,21.2601 -21.2601,-21.2601"
+               style="fill:none;stroke:#005293;stroke-width:11.3385;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               id="path24" />
+          </g>
+          <g
+             id="g26">
+            <path
+               d="M 21.2601,-21.2601 -21.2601,21.2601"
+               style="fill:none;stroke:#005293;stroke-width:11.3385;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               id="path28" />
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

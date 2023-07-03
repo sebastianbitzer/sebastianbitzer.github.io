@@ -2,7 +2,7 @@
 /* #####################################################
 # Variables
 ##################################################### */
-:root { --background-color: #ffffff; /* white */ --link-and-active-elements-color: #9FBA36; /* light blue */ --navbar-and-footer-color: #666666; /* dark gray */ --section-color: #ffffff; /* white */ --table-alternating-color: #f2f2f2; /* light gray */ }
+:root { --background-color: #ffffff; /* white */ --link-and-active-elements-color: #0065bd; /* TUM blue */ --navbar-and-footer-color: #005293; /* dark TUM blue */ --section-color: #ffffff; /* white */ --table-alternating-color: #f2f2f2; /* light gray */ }
 
 
 /* #####################################################
@@ -11,7 +11,7 @@
 body { 
     font-family: 'Open Sans', sans-serif; 
     background-color: var(--background-color); 
-    background-image: linear-gradient(#ffffff, #D8E5A4) /*#E9F1CB*/
+    background-image: linear-gradient(#ffffff, #0065bd) /*#E9F1CB*/
 }
 
 /* #####################################################
@@ -185,6 +185,7 @@ div.footercontainer {
   border-radius: 10px;
   border: 5px solid var(--link-and-active-elements-color);
 }
+
 
 .logoimage {
   text-align: left;
