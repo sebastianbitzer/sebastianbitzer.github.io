@@ -1,94 +1,811 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <link rel='icon' href='images/favicon.png' type='image/png' >
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sebastian Bitzer @ Technical University of Munich</title>
-    <meta name="author" content="Sebastian Bitzer">
-    <meta name="description" content="Doctoral Researcher in Coding Theory and Post-Quantum Cryptography">
-    <style>
-        body{font-family: 'Poppins';/*font-size: 22px;*/}
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sebastian Bitzer</title>
+<meta name="description" content="Sebastian Bitzer, doctoral researcher at TU Munich, working on code-based post-quantum cryptography.">
+<script>if ('IntersectionObserver' in window) document.documentElement.classList.add('scroll-name');</script>
+<style>
+  :root {
+    /* The only font declaration on the page. Change this one line to change the font everywhere. */
+    --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+    --fs-name: clamp(2.25rem, 5vw, 3rem);
+    --fs-lg: 1.25rem;
+    --fs-md: 1.125rem;
+    --fs-base: 1rem;
+    --fs-sm: 0.875rem;
+
+    /* The whole palette. Blue is for links, section headings and the main lines. */
+    --bg: #fbfaf7;
+    --ink: #1a1a1a;
+    --muted: #666666;
+    --rule: #e4e0d7;
+    --accent: #0b4a80;
+  }
+
+  /* Base */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: var(--fs-base);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3 { font-size: inherit; font-weight: inherit; }
+  strong { font-weight: 600; }
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .15s, color .15s; }
+  a:hover { border-bottom-color: var(--accent); }
+  .aux { font-size: var(--fs-sm); color: var(--muted); }
+
+  /* Menu and profile links stay dark until hovered. */
+  nav.top a, .hero .socials a { color: var(--ink); border: none; }
+  nav.top a:hover, .hero .socials a:hover { color: var(--accent); }
+
+  /* Menu */
+  nav.top {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--bg);
+    border-bottom: 2px solid var(--accent);
+  }
+  nav.top .inner {
+    max-width: 960px; margin: 0 auto;
+    padding: 14px 32px;
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 24px;
+  }
+  nav.top ul { list-style: none; display: flex; gap: 20px; flex-wrap: wrap; }
+  nav.top ul a { font-size: var(--fs-sm); }
+  nav.top .brand {
+    font-weight: 600;
+    white-space: nowrap;
+    transition: opacity .2s ease, visibility .2s ease;
+  }
+  /* The name joins the menu once the big name at the top has scrolled away. Its space stays reserved, so the menu doesn't move. */
+  .scroll-name nav.top .brand { opacity: 0; visibility: hidden; }
+  .scroll-name nav.top.show-name .brand { opacity: 1; visibility: visible; }
+
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 64px 32px 120px;
+    counter-reset: section;
+  }
+
+  /* Intro */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 56px;
+    align-items: start;
+    padding-bottom: 16px;
+  }
+  .hero h1 {
+    font-weight: 600;
+    font-size: var(--fs-name);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+  .hero .role {
+    font-size: var(--fs-sm);
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .hero .lede {
+    font-size: var(--fs-md);
+    max-width: 56ch;
+    margin-bottom: 32px;
+  }
+  .hero .socials {
+    display: flex; gap: 18px; flex-wrap: wrap;
+    font-size: var(--fs-sm);
+  }
+  .hero .socials a {
+    display: inline-flex; align-items: center;
+    gap: 6px;
+  }
+  .hero .socials svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.6; }
+  .hero .photo {
+    width: 220px; height: 220px;
+    margin-top: 12px;
+    border: 1px solid var(--rule);
+  }
+  .hero .photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+  /* Section headings. The numbers 01, 02, ... are automatic. */
+  section { padding: 64px 0 16px; }
+  section > h2 {
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    display: flex; align-items: center; gap: 12px;
+    counter-increment: section;
+  }
+  section > h2::before { content: counter(section, decimal-leading-zero); }
+  section > h2::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    background: var(--accent);
+    margin-left: 8px;
+  }
+
+  /* Research */
+  .research-item {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    column-gap: 32px;
+    align-items: baseline;
+    padding: 20px 0;
+  }
+  .research-item h3 {
+    font-weight: 600;
+    font-size: var(--fs-lg);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+  .research-item > p {
+    grid-column: 2;
+    max-width: 60ch;
+  }
+
+  /* Publications and talks: year on the left, shown once per year, entries on the right. */
+  .year-group {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    column-gap: 24px;
+    align-items: baseline;
+    margin-bottom: 12px;
+  }
+  .year {
+    font-size: var(--fs-sm);
+    font-variant-numeric: tabular-nums;
+    color: var(--muted);
+  }
+  .pub, .talk { padding: 10px 0; }
+  .pub { scroll-margin-top: 60px; }
+  .entry h3 {
+    font-weight: 600;
+    line-height: 1.35;
+    margin-bottom: 4px;
+  }
+  .entry .authors { font-size: var(--fs-sm); }
+  .entry .venue {
+    font-size: var(--fs-sm);
+    color: var(--muted);
+  }
+  .entry .links {
+    margin-top: 2px;
+    display: flex; gap: 14px; flex-wrap: wrap;
+  }
+  .entry .links a { font-size: var(--fs-sm); }
+  .see-all {
+    font-size: var(--fs-sm);
+    color: var(--muted);
+    margin-top: 16px;
+  }
+  #talks .see-all { margin-top: 20px; }
+  /* [C]/[J] badges are hidden. To bring them back: <section id="publications" class="with-marks"> */
+  .pub-mark {
+    display: none;
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    padding: 1px 8px;
+    border-radius: 2px;
+    align-self: start;
+    text-align: center;
+    color: var(--muted);
+    border: 1px solid var(--rule);
+    width: fit-content;
+  }
+  .with-marks .pub { display: grid; grid-template-columns: 52px 1fr; gap: 20px; }
+  .with-marks .pub-mark { display: block; }
+
+  /* Teaching */
+  .teaching-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+  .teach-col h3 {
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .teach-col > p { margin-top: 14px; }
+  .teach-list { display: flex; flex-direction: column; gap: 12px; }
+  .teach-item {
+    display: grid;
+    grid-template-columns: 116px 1fr;
+    gap: 14px;
+    align-items: baseline;
+  }
+  .teach-col:first-child .teach-item { grid-template-columns: 72px 1fr; }
+  .teach-item .sem {
+    font-size: var(--fs-sm);
+    font-variant-numeric: tabular-nums;
+    color: var(--muted);
+  }
+  .teach-item .title em { font-style: normal; font-weight: 500; }
+
+  /* Service */
+  .service-item {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 32px;
+    padding: 20px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .service-item:last-child { border-bottom: 1px solid var(--rule); }
+  .service-role {
+    font-size: var(--fs-sm);
+    color: var(--muted);
+  }
+  .service-body h3 {
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .service-body p { max-width: 60ch; }
+  .review-columns {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    column-gap: 40px;
+  }
+  .service-body h3.review-subhead {
+    font-size: var(--fs-sm);
+    color: var(--muted);
+    margin-bottom: 7px;
+  }
+  .review-entries {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 16px;
+    row-gap: 7px;
+    align-items: baseline;
+  }
+  .review-entries .review-years {
+    font-size: var(--fs-sm);
+    font-variant-numeric: tabular-nums;
+    color: var(--muted);
+  }
+
+  /* Contact and co-authors */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 52px;
+  }
+  .contact-grid div { line-height: 1.7; }
+  .contact-grid h3, .coauthors-label {
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .contact-grid h3 ~ h3 { margin-top: 1.7rem; }
+  .coauthors-label { margin-bottom: 14px; }
+  .coauthors {
+    line-height: 1.75;
+    max-width: 74ch;
+  }
+  .coauthors a {
+    color: inherit;
+    white-space: nowrap;
+  }
+  .coauthors a:hover { color: var(--accent); }
+
+  footer {
+    max-width: 960px;
+    margin: 60px auto 0;
+    padding: 24px 32px 40px;
+    border-top: 1px solid var(--rule);
+    font-size: var(--fs-sm);
+    color: var(--muted);
+    display: flex; justify-content: space-between;
+  }
+  footer a { color: inherit; border: none; }
+
+  /* Narrower than the full page width: the review lists stack. */
+  @media (max-width: 959px) {
+    .review-columns { grid-template-columns: 1fr; row-gap: 20px; }
+  }
+  /* Tablets */
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 28px; }
+    .hero .photo { order: -1; justify-self: center; width: 140px; height: 140px; margin-top: 0; }
+    .research-item { grid-template-columns: 160px 1fr; column-gap: 24px; }
+    .teaching-grid { grid-template-columns: 1fr; gap: 32px; }
+    .service-item { column-gap: 24px; }
+    nav.top ul { gap: 14px; }
+  }
+  /* Phones: single column, and the menu stays at the top instead of following. */
+  @media (max-width: 720px) {
+    nav.top { position: static; }
+    nav.top .brand { display: none; }
+    nav.top .inner { padding: 12px 20px; }
+    nav.top ul { gap: 4px 14px; }
+    main { padding: 40px 20px 80px; }
+    .hero { gap: 24px; }
+    .hero .photo { width: 120px; height: 120px; }
+    .research-item { grid-template-columns: 1fr; gap: 10px; }
+    .research-item > p { grid-column: auto; }
+    .year-group { grid-template-columns: 1fr; }
+    .talk:first-child, .pub:first-child { padding-top: 4px; }
+    .pub { scroll-margin-top: 0; }
+    .teach-item, .teach-col:first-child .teach-item { grid-template-columns: 1fr; gap: 2px; }
+    .service-item { grid-template-columns: 1fr; gap: 4px; }
+    .review-entries { grid-template-columns: 1fr; row-gap: 2px; }
+    .review-entries .review-years { margin-bottom: 10px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 28px; }
+  }
+</style>
 </head>
-
 <body>
-    <script>
-        function myFunction() {
-          var x = document.getElementById("myTopnav");
-          if (x.className === "topnav") {
-            x.className += " responsive";
-          } else {
-            x.className = "topnav";
-          }
-        }
-        </script>
 
-<header>
-    <h1>Sebastian Bitzer<img src="images/security_logo.svg" class=logoimage alt=CryptoLogo style="max-width:50%;height:100px;margin-left:15px;margin-top:5px;float: right;"></h1> 
-    <h2>Doctoral Researcher</h2>
-</header>
+<!--
+  Editing notes
+  - Links still to fill in: search for href="#".
+  - New paper: copy a .pub block into the right year under Publications. New year: copy a .year-group.
+  - New talk: copy a .talk block into the right year under Selected Talks.
+  - Section numbers (01, 02, ...) are automatic.
+-->
 
-<nav>
-    <div class="topnav" id="myTopnav">
-        <a href="index.html" class="active topnav">Home</a>
-        <a href="research.html" class="topnav">Research</a>
-        <a href="collaborations.html" class="topnav">Co-Authors</a>
-        <a href="teaching.html" class="topnav">Teaching</a>
-        <a href="events.html" class="topnav">Events</a>
-        <a href="javascript:void(0);" class="icon topnav" onclick="myFunction()">
-            <i class="fa fa-bars"></i>
-          </a>
-    </div>
+<nav class="top">
+  <div class="inner">
+    <a class="brand" href="#top">Sebastian Bitzer</a>
+    <ul>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#talks">Talks</a></li>
+      <li><a href="#teaching">Teaching</a></li>
+      <li><a href="#service">Service</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
 </nav>
 
-<section style="min-height: 300px;">
-    <h2>Biography
-        <img src="images/sebastianbitzer_home.jpg" class = bioimage alt="Sebastians Home" style="max-width:45%;width:200px;margin-left:15px;margin-right:20px;float: right;">
-    </h2>
-    <p>
-    I am currently a doctoral researcher in <a href="https://www.ce.cit.tum.de/en/lnt/people/professors/wachter-zeh/">Antonia Wachter-Zeh's</a> research group at the Technical University of Munich, Germany.
-    I am grateful to have<a href="https://user.math.uzh.ch/weger/">Violetta Weger</a> as my mentor and to be part of the <a href="https://www.cross-crypto.com/">CROSS</a> team.    
-    My research focuses on code-based cryptography, including public-key encryption and digital signature schemes.
-    </p>
-    <p>
-    I received my B.Sc and M.Sc degree in Electrical Engineering from <b>Ulm University</b>  in 2018 and 2021, respectively.
-    I particularly enjoyed working with <a href="https://www.uni-ulm.de/nt/staff/professors/martin-bossert/">Prof. Martin Bossert</a>.
-    </p>
-</section>
+<main>
 
-<section>
-    <h2><img src="images/cross_logo.svg" alt="CROSS logo" style="max-width:50%;width:150px;margin-left:15px;margin-right:20px;float: right;">
-        Recent News
-    </h2>
-    
-    <p> Our post-quantum digital signature scheme <b>CROSS</b> has reached the second round of the <a href="https://csrc.nist.gov/projects/pqc-dig-sig">call for additional digital signature schemes by NIST</a>.</p>
-    <p> Visit <a href="https://cross-crypto.com/">cross-crypto.com</a> for all details!</p>
-</section>
-<footer>
-    <div class="footercontainer">
-    <p class="footercontent">
-    Sebastian Bitzer<br>
-    Doctoral Researcher <br> <br>
-    
-    Technical University of Munich <br>
-    Department of Computer Engineering <br>
-    Associate Professorship of Coding and Cryptography (COD)  <br> <br>
-    
-    Theresienstrasse 90 <br>
-    Building N4, Room 3416 <br>
-    80333 Munich <br>
-    Germany <br> <br>
-    
-    <a href="impressum.html" style="color:white;">Impressum & Privacy Statement</a>
-    </p>
+  <header class="hero">
+    <div>
+      <div class="role">Doctoral Researcher · TU Munich</div>
+      <h1>Sebastian Bitzer</h1>
+      <p class="lede">
+        I work on <strong>code-based post-quantum cryptography</strong>. My work has contributed to <strong>CROSS</strong>, which reached the second round of NIST's additional signature process, and to recent advances in <strong>HQC decoding and DFR analysis</strong>.
+      </p>
+      <div class="socials">
+        <a href="mailto:sebastian.bitzer@tum.de"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="M4 6l8 7 8-7"/></svg>Email</a>
+        <a href="https://scholar.google.com/citations?user=Mk6_8GEAAAAJ">Google Scholar</a>
+        <a href="https://dblp.org/pid/22/6048.html">DBLP</a>
+        <a href="https://github.com/sebastianbitzer">GitHub</a>
+        <a href="#">CV (PDF)</a>
+      </div>
     </div>
+    <div class="photo"><img src="images/sebastianbitzer_home.jpg" alt="Sebastian Bitzer"></div>
+  </header>
+
+  <section id="research">
+    <h2>Research</h2>
+    <div class="research-item">
+      <h3>HQC beyond the&nbsp;standard</h3>
+      <p>Reducing public-key and ciphertext sizes of HQC through generalized concatenated codes and reliability-based errors-and-erasures decoding, with refined decryption-failure-rate analysis.</p>
+    </div>
+
+    <div class="research-item">
+      <h3>Restricted decoding &amp;&nbsp;CROSS</h3>
+      <p>Zero-knowledge protocols and signatures from the restricted syndrome decoding problem, underlying the CROSS submission to NIST, with follow-up work on TCitH/VOLEitH-based variants.</p>
+    </div>
+
+    <div class="research-item">
+      <h3>Metrics, bounds &amp;&nbsp;decoding</h3>
+      <p>Bounds and codes in the weighted-Hamming, Lee, and cover metrics; information-set decoding with hints and template side-channel attacks on code-based signature schemes.</p>
+    </div>
+  </section>
+
+  <section id="publications">
+    <h2>Publications</h2>
+
+    <div class="year-group">
+      <div class="year">2026</div>
+      <div class="year-items">
+        <div class="pub" id="pub-hqc-eurocrypt">
+          <span class="pub-mark">C</span>
+          <div class="entry">
+            <h3>HQC Beyond the Standard: Ciphertext Compression and Refined DFR Analysis</h3>
+            <div class="authors">S. Bitzer, J.-C. Deneuville, E. Munisamy, B. Purtipli, S. Ritterhoff, A. Wachter-Zeh</div>
+            <div class="venue">IACR Eurocrypt</div>
+            <div class="links"><a href="https://eprint.iacr.org/2025/2259">ePrint</a><a href="https://gitlab.com/HQCCiphertextCompression/hqc-with-ciphertext-compression">Code</a><a href="slides/EC26_HQC.pdf">Slides</a><a href="https://www.youtube.com/watch?v=B-3W3tC4jvg">Video</a></div>
+          </div>
+        </div>
+
+        <div class="pub">
+          <span class="pub-mark">C</span>
+          <div class="entry">
+            <h3>Weighted-Hamming Metric: Bounds and Codes</h3>
+            <div class="authors">S. Bitzer, A. Ravagnani, V. Weger</div>
+            <div class="venue">ISIT</div>
+            <div class="links"><a href="https://arxiv.org/abs/2601.12998">arXiv</a><a href="https://github.com/sebastianbitzer/wHm">Code</a><a href="slides/ISIT26_wHm.pdf">Slides</a></div>
+          </div>
+        </div>
+
+        <div class="pub">
+          <span class="pub-mark">C</span>
+          <div class="entry">
+            <h3>TCitH- and VOLEitH-based Signatures from Restricted Decoding</h3>
+            <div class="authors">S. Bitzer, M. Battagliola, A. Wachter-Zeh, V. Weger</div>
+            <div class="venue">ISIT</div>
+            <div class="links"><a href="https://arxiv.org/abs/2510.11224">arXiv</a><a href="https://github.com/sebastianbitzer/rsdp_mpcith">Code</a><a href="slides/ISIT26_VOLE.pdf">Slides</a></div>
+          </div>
+        </div>
+
+        <div class="pub" id="pub-hqc-codes">
+          <span class="pub-mark">P</span>
+          <div class="entry">
+            <h3>Improved Codes and Decoders for HQC</h3>
+            <div class="authors">S. Bitzer, B. Purtipli, A. Wachter-Zeh</div>
+            <div class="venue">Preprint</div>
+            <div class="links"><a href="https://eprint.iacr.org/2026/656">ePrint</a><a href="https://gitlab.com/bharath.purtipli/hqc_gcc">Code</a></div>
+          </div>
+        </div>
+
+        <div class="pub" id="pub-secagg">
+          <span class="pub-mark">P</span>
+          <div class="entry">
+            <h3>Post-Quantum Secure Aggregation via Code-Based Homomorphic Encryption</h3>
+            <div class="authors">S. Bitzer, M. Egger, M. Liu, A. Wachter-Zeh</div>
+            <div class="venue">Preprint</div>
+            <div class="links"><a href="https://arxiv.org/abs/2601.13031">arXiv</a><a href="https://github.com/sebastianbitzer/LPNAgg">Code</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year">2025</div>
+      <div class="year-items">
+        <div class="pub">
+          <span class="pub-mark">C</span>
+          <div class="entry">
+            <h3>Bounds and Codes for General Phased Burst Errors</h3>
+            <div class="authors">S. Bitzer, A. Di Giusto, A. Ravagnani, E. Yaakobi</div>
+            <div class="venue">ISIT</div>
+            <div class="links"><a href="https://arxiv.org/abs/2501.12280">arXiv</a><a href="https://github.com/sebastianbitzer/pbe">Code</a></div>
+          </div>
+        </div>
+
+        <div class="pub" id="pub-template">
+          <span class="pub-mark">J</span>
+          <div class="entry">
+            <h3>How to Lose Some Weight — A Practical Template Syndrome Decoding Attack</h3>
+            <div class="authors">S. Bitzer, J. Delvaux, E. Kirshanova, S. Maaßen, A. May, A. Wachter-Zeh</div>
+            <div class="venue">Designs, Codes and Cryptography (DCC)</div>
+            <div class="links"><a href="https://eprint.iacr.org/2024/621">ePrint</a><a href="slides/WCC24_template.pdf">Slides</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year">2024</div>
+      <div class="year-items">
+        <div class="pub" id="pub-hqc-cbc">
+          <span class="pub-mark">C</span>
+          <div class="entry">
+            <h3>HQC Beyond the BSC: Towards Error Structure-Aware Decoding</h3>
+            <div class="authors">M. Baldi, S. Bitzer, N. Lilla, P. Santini</div>
+            <div class="venue">CBCrypto</div>
+            <div class="links"><a href="https://eprint.iacr.org/2025/648">ePrint</a><a href="slides/ITG_AIT25_HQC.pdf">Slides</a></div>
+          </div>
+        </div>
+
+        <div class="pub" id="pub-whm">
+          <span class="pub-mark">C</span>
+          <div class="entry">
+            <h3>Weighted-Hamming Metric for Parallel Channels</h3>
+            <div class="authors">S. Bitzer, A. Ravagnani, V. Weger</div>
+            <div class="venue">ISIT</div>
+            <div class="links"><a href="https://arxiv.org/abs/2401.17801">arXiv</a><a href="slides/ISIT24_wHm.pdf">Slides</a></div>
+          </div>
+        </div>
+
+        <div class="pub" id="pub-zkp">
+          <span class="pub-mark">C</span>
+          <div class="entry">
+            <h3>Zero Knowledge Protocols and Signatures from the Restricted Syndrome Decoding Problem</h3>
+            <div class="authors">M. Baldi, S. Bitzer, A. Pavoni, P. Santini, A. Wachter-Zeh, V. Weger</div>
+            <div class="venue">IACR PKC</div>
+            <div class="links"><a href="https://eprint.iacr.org/2023/385">ePrint</a><a href="https://github.com/secomms/RBG">Code</a><a href="slides/PKC24_R_BG.pdf">Slides</a><a href="https://www.youtube.com/watch?v=HqoE15kAjHc&amp;list=PLeeS-3Ml-rpqsRX6SfR8vACPa4HOGKWtn&amp;index=8">Video</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year">2023</div>
+      <div class="year-items">
+        <div class="pub">
+          <span class="pub-mark">J</span>
+          <div class="entry">
+            <h3>Shift-Sum Decoding of Non-Binary Cyclic Codes</h3>
+            <div class="authors">J. Xing, M. Bossert, L. Chen, J. Yuan, S. Bitzer</div>
+            <div class="venue">IEEE Trans. Inform. Theory</div>
+            <div class="links"><a href="https://ieeexplore.ieee.org/abstract/document/10269061">IEEE</a></div>
+          </div>
+        </div>
+
+        <div class="pub" id="pub-rsd">
+          <span class="pub-mark">C</span>
+          <div class="entry">
+            <h3>Generic Decoding of Restricted Errors</h3>
+            <div class="authors">M. Baldi, S. Bitzer, A. Pavoni, P. Santini, A. Wachter-Zeh, V. Weger</div>
+            <div class="venue">ISIT</div>
+            <div class="links"><a href="https://arxiv.org/abs/2303.08882">arXiv</a><a href="https://github.com/sebastianbitzer/rest-dec">Code</a><a href="slides/ISIT23_rsdp.pdf">Slides</a></div>
+          </div>
+        </div>
+
+        <div class="pub">
+          <span class="pub-mark">C</span>
+          <div class="entry">
+            <h3>FuLeeca: A Lee-based Signature Scheme</h3>
+            <div class="authors">S. Ritterhoff, G. Maringer, S. Bitzer, V. Weger, P. Karl, T. Schamberger, J. Schupp, A. Wachter-Zeh</div>
+            <div class="venue">CBCrypto</div>
+            <div class="links"><a href="https://eprint.iacr.org/2023/377">ePrint</a></div>
+          </div>
+        </div>
+
+        <div class="pub" id="pub-cover">
+          <span class="pub-mark">C</span>
+          <div class="entry">
+            <h3>Generic Decoding in the Cover Metric</h3>
+            <div class="authors">S. Bitzer, J. Renner, A. Wachter-Zeh, V. Weger</div>
+            <div class="venue">ITW</div>
+            <div class="links"><a href="https://arxiv.org/abs/2205.12738">arXiv</a><a href="slides/ITW23_cover.pdf">Slides</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year">2022</div>
+      <div class="year-items">
+        <div class="pub">
+          <span class="pub-mark">C</span>
+          <div class="entry">
+            <h3>On Multibasis Information Set Decoding</h3>
+            <div class="authors">S. Bitzer, M. Bossert</div>
+            <div class="venue">ISIT</div>
+            <div class="links"><a href="https://ieeexplore.ieee.org/document/9834420/">IEEE</a></div>
+          </div>
+        </div>
+
+        <div class="pub">
+          <span class="pub-mark">J</span>
+          <div class="entry">
+            <h3>On Hard and Soft Decision Decoding of BCH Codes</h3>
+            <div class="authors">M. Bossert, R. Schulz, S. Bitzer</div>
+            <div class="venue">IEEE Trans. Inform. Theory</div>
+            <div class="links"><a href="https://arxiv.org/abs/2107.07401">arXiv</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="see-all">
+      → Earlier work (2019–2020) and complete list available on
+      <a href="https://dblp.org/pid/22/6048.html">DBLP</a> and
+      <a href="https://scholar.google.com/citations?user=Mk6_8GEAAAAJ">Google Scholar</a>.
+    </p>
+  </section>
+
+  <section id="talks">
+    <h2>Selected Talks</h2>
+
+    <div class="year-group">
+      <div class="year">2026</div>
+      <div class="year-items">
+        <div class="talk entry">
+          <h3>HQC Beyond the Standard: Ciphertext Compression and Refined DFR Analysis</h3>
+          <div class="venue">IACR EUROCRYPT, Rome</div>
+          <div class="links"><a href="slides/EC26_HQC.pdf">Slides</a><a href="https://www.youtube.com/watch?v=B-3W3tC4jvg">Video</a></div>
+        </div>
+        <div class="talk entry">
+          <h3>Code-Based Cryptography: Public-Key Encryption</h3>
+          <div class="venue"><a href="https://qsafe2026.github.io/">QSAFE workshop</a> at ISIT, Guangzhou, invited</div>
+          <div class="links"><a href="slides/QSAFE26_PKE.pdf">Slides</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year">2025</div>
+      <div class="year-items">
+        <div class="talk entry">
+          <h3>Ciphertext Compression for HQC</h3>
+          <div class="venue">PQC workshop, Zürich</div>
+          <div class="links"><a href="slides/Zurich25_HQC_VQ.pdf">Slides</a></div>
+        </div>
+
+        <div class="talk entry">
+          <h3>VOLEitH-based Signatures from Restricted Decoding Problems</h3>
+          <div class="venue">CBCrypto, Madrid</div>
+          <div class="links"><a href="slides/CBC25_VOLE.pdf">Slides</a></div>
+        </div>
+
+        <div class="talk entry">
+          <h3>Non-Random Codes in Code-Based Cryptography</h3>
+          <div class="venue">PICS seminar, invited</div>
+          <div class="links"><a href="slides/PICS_HQC_25.pdf">Slides</a></div>
+        </div>
+
+        <div class="talk entry">
+          <h3>Weighted-Hamming Metric: Codes and Bounds</h3>
+          <div class="venue">Joint Mathematics Meeting, Seattle</div>
+          <div class="links"><a href="slides/JMM25_wHm.pdf">Slides</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year">2024</div>
+      <div class="year-items">
+        <div class="talk entry">
+          <h3>Zero-Knowledge Protocols and Signatures from the Restricted SDP</h3>
+          <div class="venue">IACR PKC, Sydney</div>
+          <div class="links"><a href="slides/PKC24_R_BG.pdf">Slides</a><a href="https://www.youtube.com/watch?v=HqoE15kAjHc&amp;list=PLeeS-3Ml-rpqsRX6SfR8vACPa4HOGKWtn&amp;index=8">Video</a></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="see-all">→ Full talk and poster history on <a href="#">CV (PDF)</a>.</p>
+  </section>
+
+  <section id="teaching">
+    <h2>Teaching &amp; Supervision</h2>
+    <div class="teaching-grid">
+
+      <div class="teach-col">
+        <h3>Teaching Assistant</h3>
+        <div class="teach-list">
+          <div class="teach-item"><span class="sem">WS 26/27</span><span class="title">Channel Coding</span></div>
+          <div class="teach-item"><span class="sem">WS 25/26</span><span class="title">Channel Coding</span></div>
+          <div class="teach-item"><span class="sem">WS 24/25</span><span class="title">Security in Communications and Storage</span></div>
+          <div class="teach-item"><span class="sem">SS 24</span><span class="title">Advanced Topics in Communication Systems</span></div>
+          <div class="teach-item"><span class="sem">SS 23</span><span class="title">Coding Theory for Storage and Networks</span></div>
+          <div class="teach-item"><span class="sem">WS 22/23</span><span class="title">Security in Communications and Storage</span></div>
+          <div class="teach-item"><span class="sem">WS 20/21</span><span class="title">Advanced Channel Coding <span class="aux">· Uni Ulm</span></span></div>
+        </div>
+      </div>
+
+      <div class="teach-col">
+        <h3>Selected Student Supervision</h3>
+        <div class="teach-list">
+          <div class="teach-item">
+            <span class="sem">Master · Erasmus</span>
+            <span class="title"><em>Zero-Knowledge Protocols based on Restricted Vector Decoding for Post-Quantum Digital Signatures</em></span>
+          </div>
+          <div class="teach-item">
+            <span class="sem">Master</span>
+            <span class="title"><em>Decoding Problems via Quantization</em><br><span class="aux">with E. Munisamy, S. Ritterhoff</span></span>
+          </div>
+          <div class="teach-item">
+            <span class="sem">Master</span>
+            <span class="title"><em>Improved Solvers for Permutation Equivalence Problems</em><br><span class="aux">with A. Porwal</span></span>
+          </div>
+          <div class="teach-item">
+            <span class="sem">Master</span>
+            <span class="title"><em>Code-Based Homomorphic Encryption for Private Aggregation</em><br><span class="aux">with M. Egger</span></span>
+          </div>
+          <div class="teach-item">
+            <span class="sem">Master · Erasmus</span>
+            <span class="title"><em>Improved Restricted Decoding via Nearest Neighbor Techniques</em></span>
+          </div>
+        </div>
+        <p class="aux">+ 10 further completed internship and thesis projects.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="service">
+    <h2>Service</h2>
+    <div class="service-item">
+      <div class="service-role">Co-Chair</div>
+      <div class="service-body">
+        <h3>Munich Workshop on Coding and Cryptography (MWCC) 2024</h3>
+        <p>Three-day workshop at TU Munich (April 2024) with sixteen invited speakers on coding theory, post-quantum cryptography, and privacy-preserving machine learning. Co-organized with R. Bitar, C. Hofmeister, and A. Wachter-Zeh. <a href="https://www.ce.cit.tum.de/lnt/events/events-2024/2024-munich-workshops-on-coding/2024-munich-workshop-on-coding-and-cryptography-mwcc/">Workshop webpage →</a></p>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-role">Reviewer</div>
+      <div class="service-body">
+        <div class="review-columns">
+          <div>
+            <h3 class="review-subhead">Conferences</h3>
+            <div class="review-entries">
+              <div>Eurocrypt</div><div class="review-years">2027</div>
+              <div>Asiacrypt</div><div class="review-years">2023</div>
+              <div>ISIT</div><div class="review-years">2024</div>
+              <div>ITW</div><div class="review-years">2024</div>
+              <div>CBCrypto</div><div class="review-years">2024, 2025, 2026</div>
+              <div>ISTC</div><div class="review-years">2025</div>
+              <div>PQCrypto</div><div class="review-years">2026</div>
+            </div>
+          </div>
+          <div>
+            <h3 class="review-subhead">Journals</h3>
+            <div class="review-entries">
+              <div>IEEE Transactions on Information Theory</div><div class="review-years">2023, 2025, 2026</div>
+              <div>Advances in Mathematics of Communications</div><div class="review-years">2023, 2024, 2025</div>
+              <div>Designs, Codes and Cryptography</div><div class="review-years">2025, 2026</div>
+              <div>Journal of Cryptology</div><div class="review-years">2023</div>
+              <div>Cryptography and Communications</div><div class="review-years">2025</div>
+              <div>Computational and Applied Mathematics</div><div class="review-years">2025</div>
+              <div>IEEE Communications Letters</div><div class="review-years">2025</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact &amp; Co-Authors</h2>
+
+    <div class="contact-grid">
+      <div>
+        <h3>Address</h3>
+        Technical University of Munich<br>
+        Associate Professorship of<br>Coding and Cryptography (COD)<br>
+        Theresienstraße 90, Building N4, Room 3416<br>
+        80333 Munich, Germany
+      </div>
+      <div>
+        <h3>Email</h3>
+        <a href="mailto:sebastian.bitzer@tum.de">sebastian.bitzer@tum.de</a>
+        <h3>Mentors</h3>
+        <a href="https://www.professoren.tum.de/wachter-zeh-antonia">Antonia Wachter-Zeh</a> (advisor)<br>
+        <a href="https://www.professoren.tum.de/weger-violetta">Violetta Weger</a> (mentor)<br>
+        Part of the <a href="https://www.cross-crypto.com/">CROSS</a> team
+      </div>
+    </div>
+
+    <h3 class="coauthors-label">Co-Authors</h3>
+    <p class="coauthors">
+      <a href="https://scholar.google.com/citations?user=mb2y7OcAAAAJ">Marco Baldi</a>, <a href="https://www.researchgate.net/profile/Michele-Battagliola">Michele Battagliola</a>, <a href="https://www.uni-ulm.de/nt/staff/professors/martin-bossert/">Martin Bossert</a>, <a href="http://www.chencode.cn/">Li Chen</a>, <a href="https://www.tii.ae/team/dr-jeroen-delvaux">Jeroen Delvaux</a>, <a href="https://deneuville.github.io/">Jean-Christophe Deneuville</a>, <a href="https://research.tue.nl/p/en/persons/andrea-di-giusto">Andrea Di Giusto</a>, <a href="https://www.maximilian-egger.de/">Maximilian Egger</a>, <a href="https://scholar.google.com/citations?user=LgpmV1AAAAAJ">Patrick Karl</a>, <a href="https://elenakirshanova.github.io/">Elena Kirshanova</a>, Nicholas Lilla, Mumin Liu, Sebastian Maaßen, <a href="https://www.researchgate.net/profile/Georg-Maringer">Georg Maringer</a>, <a href="https://informatik.rub.de/may/">Alexander May</a>, <a href="https://www.ce.cit.tum.de/lnt/mitarbeiter/promovierende/munisamy/">Emma Munisamy</a>, <a href="https://scholar.google.com/citations?user=ta1_Ja8AAAAJ">Alessio Pavoni</a>, <a href="https://www.ce.cit.tum.de/lnt/mitarbeiter/promovierende/purtipli/">Bharath Purtipli</a>, <a href="https://a.ravagnani.win.tue.nl/">Alberto Ravagnani</a>, <a href="https://julianrenner.com/">Julian Renner</a>, <a href="https://www.ce.cit.tum.de/lnt/mitarbeiter/promovierende/ritterhoff/">Stefan Ritterhoff</a>, <a href="https://scholar.google.com/citations?user=tKzpSgEAAAAJ">Paolo Santini</a>, <a href="https://scholar.google.com/citations?user=GhUY-60AAAAJ">Thomas Schamberger</a>, <a href="https://www.uni-ulm.de/nt/staff/research-assistants/rebekka-schulz/">Rebekka Schulz</a>, <a href="https://www.ce.cit.tum.de/eisec/mitarbeiter/jonas-schupp/">Jonas Schupp</a>, <a href="https://www.professoren.tum.de/wachter-zeh-antonia">Antonia Wachter-Zeh</a>, <a href="https://home.cit.tum.de/~wvi/">Violetta Weger</a>, Jiongyue Xing, <a href="https://yaakobi.net.technion.ac.il/">Eitan Yaakobi</a>, Jiasheng Yuan.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <div>© 2026 Sebastian Bitzer</div>
+  <div><a href="impressum.html">Impressum</a></div>
 </footer>
 
-</body>
+<script>
+  // Show the name in the menu once the big name at the top has scrolled out from under it.
+  (function () {
+    if (!('IntersectionObserver' in window)) return;
+    var nav = document.querySelector('nav.top');
+    var bigName = document.querySelector('.hero h1');
+    new IntersectionObserver(function (entries) {
+      nav.classList.toggle('show-name', !entries[0].isIntersecting);
+    }, { rootMargin: '-' + nav.offsetHeight + 'px 0px 0px 0px' }).observe(bigName);
+  })();
+</script>
 
+</body>
 </html>

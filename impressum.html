@@ -1,66 +1,140 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <link rel='icon' href='images/favicon.png' type='image/png' >
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sebastian Bitzer @ Technical University of Munich</title>
-    <meta name="author" content="Sebastian Bitzer">
-    <meta name="description" content="Doctoral Researcher in Coding Theory and Post-Quantum Cryptography">
-    <style>
-        body{font-family: 'Poppins';/*font-size: 22px;*/}
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Impressum · Sebastian Bitzer</title>
+<meta name="description" content="Impressum of the website of Sebastian Bitzer.">
+<style>
+  /* Same font, sizes and colors as index.html. */
+  :root {
+    --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+    --fs-name: clamp(2.25rem, 5vw, 3rem);
+    --fs-base: 1rem;
+    --fs-sm: 0.875rem;
+
+    --bg: #fbfaf7;
+    --ink: #1a1a1a;
+    --muted: #666666;
+    --rule: #e4e0d7;
+    --accent: #0b4a80;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: var(--fs-base);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .15s, color .15s; }
+  a:hover { border-bottom-color: var(--accent); }
+
+  /* Menu */
+  nav.top {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--bg);
+    border-bottom: 2px solid var(--accent);
+  }
+  nav.top a { color: var(--ink); border: none; }
+  nav.top a:hover { color: var(--accent); }
+  nav.top .inner {
+    max-width: 960px; margin: 0 auto;
+    padding: 14px 32px;
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 24px;
+  }
+  nav.top ul { list-style: none; display: flex; gap: 20px; flex-wrap: wrap; }
+  nav.top ul a { font-size: var(--fs-sm); }
+  nav.top .brand { font-weight: 600; white-space: nowrap; }
+
+  main {
+    flex: 1;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 64px 32px 120px;
+  }
+  h1 {
+    font-weight: 600;
+    font-size: var(--fs-name);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 40px;
+  }
+  h2 {
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  h2 ~ h2 { margin-top: 1.7rem; }
+  address, main p { font-style: normal; line-height: 1.7; }
+
+  footer {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 24px 32px 40px;
+    border-top: 1px solid var(--rule);
+    font-size: var(--fs-sm);
+    color: var(--muted);
+  }
+
+  @media (max-width: 860px) {
+    nav.top ul { gap: 14px; }
+  }
+  /* Phones: name above the menu, and the menu stays at the top instead of following. */
+  @media (max-width: 720px) {
+    nav.top { position: static; }
+    nav.top .inner { padding: 12px 20px; flex-direction: column; gap: 4px; }
+    nav.top ul { gap: 4px 14px; }
+    main { padding: 40px 20px 80px; }
+    footer { padding: 24px 20px 40px; }
+  }
+</style>
 </head>
-
-
 <body>
-    <script>
-        function myFunction() {
-          var x = document.getElementById("myTopnav");
-          if (x.className === "topnav") {
-            x.className += " responsive";
-          } else {
-            x.className = "topnav";
-          }
-        }
-        </script>
 
-<header>
-  <h1>Sebastian Bitzer<img src="images/security_logo.svg" class=logoimage alt=CryptoLogo style="max-width:50%;height:100px;margin-left:15px;margin-top:5px;float: right;"></h1> 
-  <h2>Doctoral Researcher</h2>
-</header>
-
-<nav>
-    <div class="topnav" id="myTopnav">
-        <a href="index.html" class="topnav">Home</a>
-        <a href="research.html" class="topnav">Research</a>
-        <a href="collaborations.html" class="topnav">Co-Authors</a>
-        <a href="teaching.html" class="topnav">Teaching</a>
-        <!--<a href="more.html" class="topnav">More</a>-->
-        <a href="javascript:void(0);" class="icon topnav" onclick="myFunction()">
-            <i class="fa fa-bars"></i>
-          </a>
-    </div>
+<nav class="top">
+  <div class="inner">
+    <a class="brand" href="index.html">Sebastian Bitzer</a>
+    <ul>
+      <li><a href="index.html#research">Research</a></li>
+      <li><a href="index.html#publications">Publications</a></li>
+      <li><a href="index.html#talks">Talks</a></li>
+      <li><a href="index.html#teaching">Teaching</a></li>
+      <li><a href="index.html#service">Service</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
 </nav>
 
-<section>
-  <h2>Impressum</h2>
-  Sebastian Bitzer<br>
-  Doctoral Researcher <br> <br>
-  
-  Technical University of Munich <br>
-  Department of Computer Engineering <br>
-  Associate Professorship of Coding and Cryptography (COD)  <br> <br>
-  
-  Theresienstrasse 90 <br>
-  Building N4, Room 3416 <br>
-  80333 Munich <br>
-  Germany <br> <br>
-</section>
+<main>
+  <h1>Impressum</h1>
+
+  <h2>Address</h2>
+  <address>
+    Sebastian Bitzer<br>
+    Technical University of Munich<br>
+    Department of Computer Engineering<br>
+    Associate Professorship of Coding and Cryptography (COD)<br>
+    Theresienstraße 90, Building N4, Room 3416<br>
+    80333 Munich, Germany
+  </address>
+
+  <h2>Email</h2>
+  <p><a href="mailto:sebastian.bitzer@tum.de">sebastian.bitzer@tum.de</a></p>
+</main>
+
+<footer>© 2026 Sebastian Bitzer</footer>
 
 </body>
 </html>
